@@ -15,7 +15,7 @@ If there's no problem they exit with 0 and output OK.
 | cacert="" | The CA certificate of the cluster | "/etc/origin/master/ca.crt" |  
 | namespaces=[] | The namespaces we want to monitor, the service account needs to have access to them | ["test1", "test2"] |  
 
-In order to get the token you need to create a service account, and bind it to every namespace you want to monitor.
+*__In order to get the token you need to create a service account, and bind it to every namespace you want to monitor.__*
 
 This will create a service account in the openshift-monitoring namespace, and bind the view clusterrole to it in the appropriate namespaces.  
 - oc create sa nrpe-sa -n openshift-monitoring  
