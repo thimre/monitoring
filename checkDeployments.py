@@ -26,7 +26,6 @@ def makeRequest(ns):
 
 def getDepStateInNs(deps, ns):
     for dep in deps:
-        depReady = False
         name = dep.get("metadata").get("name")
 
         # Replicas is the number of desired replicas in .spec
@@ -41,16 +40,7 @@ def getDepStateInNs(deps, ns):
             # Total number of ready pods targeted by this deployment in .status
             readyReplicas = status.get("readyReplicas")
 
-
-            #availableReplicas = status.get("availableReplicas")
-            #updatedReplicas = status.get("updatedReplicas")
-            #unavailableReplicas = status.get("unavailableReplicas")
-
-            if readyReplicas == desired:
-                depReady = True
-                #print([ns + " : " + name + " - Desired: " + str(desired) + ", Ready: " + str(readyReplicas)])
-            else:
-                #errors.append([ns + " : " + name + " - Deployment Not Ready. Desired: " + str(desired) + ", Ready: " + str(readyReplicas)])
+            if readyReplicas != desired:
                 errors.append(["Deployment Not Ready. Namespace: " + ns + ", Name: " + name + ", Desired: " + str(desired) + ", Ready: " + str(readyReplicas)])
 
 for oneNS in namespaces:
