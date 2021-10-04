@@ -2,7 +2,7 @@
 
 *Configuration:*
 
-|variable|description|example
+|variable|description|example|
 |:---|:---|
 |token64="" | The bearer token of the service account encoded in base64 |
 |baseUrl=""  | The url of the master node, ex: "https://myOKDCluster.home:8443" | 
