@@ -1,5 +1,5 @@
-#### Openshift 3.11, OKD 3.11 monitoring scripts written in Python 3.
-
+#### Openshift (OKD) 3.11 monitoring scripts written in Python 3
+---
 The scripts communicate with the Openshift API using python's requests library.
 
 *Summary of the scripts:*
