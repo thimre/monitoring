@@ -14,4 +14,9 @@ In order to get the token you need to create a service account, and bind it to e
 This will create a service account in the openshift-monitoring namespace, and bind the view clusterrole to it in the appropriate namespaces.  
 - oc create sa nrpe-sa -n openshift-monitoring  
 - oc policy add-role-to-user view system:serviceaccount:openshift-monitoring:nrpe-sa -n test1  
-- oc policy add-role-to-user view system:serviceaccount:openshift-monitoring:nrpe-sa -n test2  
+- oc policy add-role-to-user view system:serviceaccount:openshift-monitoring:nrpe-sa -n test2
+
+To get the token in base64, first get the name of the secret (nrpe-sa-token-xxxxx) which stores the token:
+- oc get sa nrpe-sa -n openshift-monitoring
+- oc get secret nrpe-sa-token-xxxxx -n openshift-monitoring -o yaml | grep "token:"
+
