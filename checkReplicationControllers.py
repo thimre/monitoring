@@ -42,16 +42,7 @@ def getRCStateInNs(rcs, ns):
             # Total number of ready pods targeted by this deployment in .status
             readyReplicas = status.get("readyReplicas")
 
-
-            #availableReplicas = status.get("availableReplicas")
-            #updatedReplicas = status.get("updatedReplicas")
-            #unavailableReplicas = status.get("unavailableReplicas")
-
-            if readyReplicas == desired:
-                rcReady = True
-                #print([ns + " : " + name + " - Desired: " + str(desired) + ", Ready: " + str(readyReplicas)])
-            else:
-                #errors.append([ns + " : " + name + " - Replication Controller Not Ready. Desired: " + str(desired) + ", Ready: " + str(readyReplicas)])
+            if readyReplicas != desired:
                 errors.append(["Replication Controller Not Ready. Namespace: " + ns + ", Name: " + name + ", Desired: " + str(desired) + ", Ready: " + str(readyReplicas)])
 
 
