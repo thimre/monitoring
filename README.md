@@ -7,7 +7,7 @@ The scripts communicate with the Openshift API using python's requests library.
 - __checkDeploymentConfigs.py__: checks all deploymentconfig object for the total number of __ready pods__ targeted them. If it's not the __desired__ number, exits with 2 and outputs the name of the deploymentconfigs.
 - __checkPods.py__: outputs the pods name that are __not__ in __Running or Succeeded__ state and exits with 2.
 - __checkReplicationControllers.py__: checks all replication controllers for the total number of __ready pods__  targeted by them. If it's not the __desired__ number, exits with 2 and outputs the name of the replication controllers.  
-If there's no problem they exit with 0 and output OK.
+*If there's no problem they exit with 0 and output OK.*
 
 *Configuration:*
 
