@@ -20,7 +20,6 @@ def makeRequest(ns):
         resp = requests.get(url, headers=headers, verify=cacert)
     except Exception as e:
         print(f"Cannot connect to API at URL: {url}")
-        print(e)
         sys.exit(2)
     return resp.json()
 
@@ -28,7 +27,6 @@ def makeRequest(ns):
 
 def getDepcfgsStateInNs(deps, ns):
     for dep in deps:
-        depReady = False
         name = dep.get("metadata").get("name")
 
         # Replicas is the number of desired replicas in .spec
@@ -43,16 +41,7 @@ def getDepcfgsStateInNs(deps, ns):
             # Total number of ready pods targeted by this deployment in .status
             readyReplicas = status.get("readyReplicas")
 
-
-            #availableReplicas = status.get("availableReplicas")
-            #updatedReplicas = status.get("updatedReplicas")
-            #unavailableReplicas = status.get("unavailableReplicas")
-
-            if readyReplicas == desired:
-                depReady = True
-                #print([ns + " : " + name + " - Desired: " + str(desired) + ", Ready: " + str(readyReplicas)])
-            else:
-                #errors.append([ns + " : " + name + " - Deployment Not Ready. Desired: " + str(desired) + ", Ready: " + str(readyReplicas)])
+            if readyReplicas != desired:
                 errors.append(["Deployment Not Ready. Namespace: " + ns + ", Name: " + name + ", Desired: " + str(desired) + ", Ready: " + str(readyReplicas)])
 
 
