@@ -35,17 +35,7 @@ def getPodsStateInNs(pods, ns):
         name = pod.get("metadata").get("name")
 
         if status != "Succeeded":
-            if status == "Running":
-                conditions = pod.get("status").get("conditions")
-
-                for condition in conditions:
-                    #print(condition)
-                    if condition.get("type") == "Ready":
-                        if condition.get("status") == "True":
-                            podReady = True
-
-            else:
-                #errors.append([ns + " : " + name + " - Pod is " + status])
+            if status != "Running":
                 errors.append(["Pod is " + status + ", Namespace: " + ns + ", Pod Name: " + name])
 
 for oneNS in namespaces:
@@ -59,7 +49,6 @@ if len(errors) == 0:
     print("Ok")
     sys.exit(0)
 else:
-    #print(errors)
     for err in errors:
         print(err)
     sys.exit(2)
