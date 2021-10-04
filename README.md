@@ -29,5 +29,6 @@ To get the token in base64, first get the name of the secret (nrpe-sa-token-xxxx
 - oc get secret nrpe-sa-token-xxxxx -n openshift-monitoring -o yaml | grep "token:" | awk '{print $2}'  
 *The output can be a value of token64 in the script.*  
 
+---
 [Openshift 3.11 REST API documentation](https://docs.openshift.com/container-platform/3.11/rest_api/)
 
