@@ -1,5 +1,7 @@
 #### Openshift 3.11, OKD 3.11 monitoring scripts written in Python 3.
 
+The scripts communicate with the Openshift API using python's requests library.
+
 *Summary of the scripts:*
 - __checkDeploymentConfigs.py__: checks all deploymentconfig for the total number of __ready pods__ targeted them. If it's not the __desired__ number, exits with 2 and outputs the name of the deployments.
 - __checkPods.py__: outputs the pods name that are not is Running or Succeeded state and exits with 2.
