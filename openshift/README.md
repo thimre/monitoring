@@ -3,11 +3,11 @@
 The scripts communicate with the Openshift API using python's requests library.
 
 *Summary of the scripts:*
-- __checkDeployments.py__ : checks all deployment for the total number of __ready pods__ targeted by them. If it's not the __desired__ number, exits with 2 and outputs the name of the erroneous deployments. 
-- __checkDeploymentConfigs.py__: checks all deploymentconfig object for the total number of __ready pods__ targeted them. If it's not the __desired__ number, exits with 2 and outputs the name of the erroneous deploymentconfigs.
-- __checkPods.py__: outputs the pods' name that are __not__ in __Running or Succeeded__ state and exits with 2.
-- __checkReplicationControllers.py__: checks all replication controllers for the total number of __ready pods__  targeted by them. If it's not the __desired__ number, exits with 2 and outputs the name of the erroneous replication controllers.  
-*If there's no problem they exit with 0 and output OK.*
+- __checkDeployments.py__ : Checks all deployments in the defined namespaces. It compares the total number of __ready pods__ targeted by a deployment, if it's not the same as the __desired__ number, exits with exit status 2 and outputs the name of the erroneous deployments. 
+- __checkDeploymentConfigs.py__: Checks all deploymentconfig objects in the defined namespaces. It compares the total number of __ready pods__ targeted by a deploymentconfig, if it's not the same as the __desired__ number, exits with exit status 2 and outputs the name of the erroneous deploymentconfigs.
+- __checkPods.py__: Checks all pods in the defined namespaces. Outputs the erroneous pods' name that are __not__ in __Running or Succeeded__ state and exits with 2.
+- __checkReplicationControllers.py__: Checks all replication controllers in the defined namespaces. It compares the total number of __ready pods__ targeted by a replication controller, if it's not the same as the __desired__ number, exits with exit status 2 and outputs the name of the erroneous replication controllers.  
+*If there are no problems each script exits with exit status 0 and outputs OK.*
 
 *Configuration:*
 
