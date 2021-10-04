@@ -1,5 +1,11 @@
 #### Openshift 3.11, OKD 3.11 monitoring scripts written in Python 3.
 
+*Summary of the scripts:*
+- __checkDeploymentConfigs.py__: checks all deploymentconfig for the total number of __ready pods__ targeted them. If it's not the __desired__ number, exits with 2 and outputs the name of the deployments.
+- __checkPods.py__: outputs the pods name that are not is Running or Succeeded state and exits with 2.
+- __checkReplicationControllers.py__: checks all replication controllers for the total number of ready pods targeted by them. If it's not the desired number, exits with 2 and outputs the name of the replication controllers.  
+If there's no problem they exit with 0 and output OK.
+
 *Configuration:*
 
 | variable | description | example |
@@ -22,7 +28,4 @@ To get the token in base64, first get the name of the secret (nrpe-sa-token-xxxx
 *The output can be a value of token64 in the script.*  
 
 
-*Summary of each script:*
-- __checkDeploymentConfigs.py__: checks all deploymentconfigs for the total number of ready pods targeted by each deployment. If it's not the desired number, exits with 2 and outputs the name of the deployments.
-- __checkPods.py__: outputs the pods name that are not is Running or Succeeded state.
-- __checkReplicationControllers.py__: checks all replication controllers for the total number of ready pods targeted by them. If it's not the desired number, exits with 2 and outputs the name of the replication controllers.
+
