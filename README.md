@@ -12,6 +12,6 @@
 In order to get the token you need to create a service account, and bind it to every namespace you want to monitor.
 
 This will create a service account in the openshift-monitoring namespace, and bind the view clusterrole to it in the appropriate namespaces.  
-oc create sa nrpe-sa -n openshift-monitoring  
-oc policy add-role-to-user view system:serviceaccount:openshift-monitoring:nrpe-sa -n test1  
-oc policy add-role-to-user view system:serviceaccount:openshift-monitoring:nrpe-sa -n test2  
+- oc create sa nrpe-sa -n openshift-monitoring  
+- oc policy add-role-to-user view system:serviceaccount:openshift-monitoring:nrpe-sa -n test1  
+- oc policy add-role-to-user view system:serviceaccount:openshift-monitoring:nrpe-sa -n test2  
