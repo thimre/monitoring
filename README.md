@@ -18,5 +18,5 @@ This will create a service account in the openshift-monitoring namespace, and bi
 
 To get the token in base64, first get the name of the secret (nrpe-sa-token-xxxxx) which stores the token:
 - oc get sa nrpe-sa -n openshift-monitoring
-- oc get secret nrpe-sa-token-xxxxx -n openshift-monitoring -o yaml | grep "token:"
+- oc get secret nrpe-sa-token-xxxxx -n openshift-monitoring -o yaml | grep "token:" | awk '{print $2}'
 
