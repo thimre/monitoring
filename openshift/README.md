@@ -6,7 +6,8 @@ The scripts communicate with the Openshift API using python's requests library.
 - __checkDeployments.py__ : Checks all deployments in the defined namespaces. It compares the total number of __ready pods__ targeted by a deployment, if it's not the same as the __desired__ number, exits with exit status 2 and outputs the name of the erroneous deployments. 
 - __checkDeploymentConfigs.py__: Checks all deploymentconfig objects in the defined namespaces. It compares the total number of __ready pods__ targeted by a deploymentconfig, if it's not the same as the __desired__ number, exits with exit status 2 and outputs the name of the erroneous deploymentconfigs.
 - __checkPods.py__: Checks all pods in the defined namespaces. Outputs the erroneous pods' name that are __not__ in __Running or Succeeded__ state and exits with 2.
-- __checkReplicationControllers.py__: Checks all replication controllers in the defined namespaces. It compares the total number of __ready pods__ targeted by a replication controller, if it's not the same as the __desired__ number, exits with exit status 2 and outputs the name of the erroneous replication controllers.  
+- __checkReplicationControllers.py__: Checks all replication controllers in the defined namespaces. It compares the total number of __ready pods__ targeted by a replication controller, if it's not the same as the __desired__ number, exits with exit status 2 and outputs the name of the erroneous replication controllers.
+- __checkDaemonSets.py__: Checks all daemonsets in the defined namespaces. It compares the __desiredNumberScheduled__ and __numberReady__ values in the daemonsets status.
 *If there are no problems each script exits with exit status 0 and outputs OK.*
 
 *Configuration:*
