@@ -37,10 +37,8 @@ def getDsStateInNs(dss, ns):
             # numberReady: The number of nodes that should be running the daemon pod and have one or more of the daemon pod running and ready.
             numberReady = status.get("numberReady")
 
-            if numberReady == desiredNumberScheduled:
-                print([ns + " : " + name + " - Desired: " + str(desiredNumberScheduled) + ", Ready: " + str(readyReplicas)])
-            else:
-                errors.append(["DaemonSet Not Ready. Namespace: " + ns + ", Name: " + name + ", Desired: " + str(desiredNumberScheduled) + ", Ready: " + str(numberReady)])
+            if numberReady != desiredNumberScheduled:
+                errors.append([name + " DaemonSet Not Ready. Namespace: " + ns + ", Desired: " + str(desiredNumberScheduled) + ", Ready: " + str(numberReady)])
 
 
 for oneNS in namespaces:
