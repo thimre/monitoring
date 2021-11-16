@@ -8,6 +8,7 @@ The scripts communicate with the Openshift API using python's requests library. 
 - __checkPods.py__: Checks all pods in the defined namespaces. Outputs the erroneous pods' name that are __not__ in __Running or Succeeded__ state and exits with 2.
 - __checkReplicationControllers.py__: Checks all replication controllers in the defined namespaces. It compares the total number of __ready pods__ targeted by a replication controller, if it's not the same as the __desired__ number, exits with exit status 2 and outputs the name of the erroneous replication controllers.
 - __checkDaemonSets.py__: Checks all daemonsets in the defined namespaces. It compares the __desiredNumberScheduled__ and __numberReady__ values in the daemonsets status.
+- __checkNodes.py__: Checks all nodes error conditions returned by __kubelet__.
 *If there are no problems each script exits with exit status 0 and outputs OK.*
 
 *Configuration:*
@@ -30,6 +31,11 @@ To get the token in base64, first get the name of the secret (nrpe-sa-token-xxxx
 - oc get sa nrpe-sa -n openshift-monitoring -o yaml
 - oc get secret nrpe-sa-token-xxxxx -n openshift-monitoring -o yaml | grep "token:" | awk '{print $2}'  
 *The output can be a value of token64 in the script.*  
+
+__checkNodes.py__ need additional access to list the node conditions:
+- oc create clusterrole nodeviewonly --verb=get,watch,list --resource=node
+- oc adm policy who-can get nodes
+- oc adm policy add-cluster-role-to-user nodeviewonly system:serviceaccount:openshift-monitoring:nrpe-sa
 
 ---
 [Openshift 3.11 REST API documentation](https://docs.openshift.com/container-platform/3.11/rest_api/)
