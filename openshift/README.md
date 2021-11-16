@@ -1,6 +1,6 @@
 #### Openshift (OKD) 3.11 monitoring scripts written in Python 3
 ---
-The scripts communicate with the Openshift API using python's requests library.
+The scripts communicate with the Openshift API using python's requests library. Their output is icinga / nagios compatible.
 
 *Summary of the scripts:*
 - __checkDeployments.py__ : Checks all deployments in the defined namespaces. It compares the total number of __ready pods__ targeted by a deployment, if it's not the same as the __desired__ number, exits with exit status 2 and outputs the name of the erroneous deployments. 
