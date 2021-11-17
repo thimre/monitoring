@@ -32,7 +32,7 @@ To get the token in base64, first get the name of the secret (nrpe-sa-token-xxxx
 - oc get secret nrpe-sa-token-xxxxx -n openshift-monitoring -o yaml | grep "token:" | awk '{print $2}'  
 *The output can be a value of token64 in the script.*  
 
-__checkNodes.py__ need additional access to list the node conditions:
+__checkNodes.py__ needs additional access to list the node conditions:
 - oc create clusterrole nodeviewonly --verb=get,watch,list --resource=node
 - oc adm policy who-can get nodes
 - oc adm policy add-cluster-role-to-user nodeviewonly system:serviceaccount:openshift-monitoring:nrpe-sa
