@@ -20,6 +20,7 @@ def makeRequest():
         resp = requests.get(url, headers=headers, verify=cacert)
     except:
         print(f"Cannot connect to API at URL: {url}")
+        sys.exit(2)
     return resp.json()
 
 
