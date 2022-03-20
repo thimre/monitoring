@@ -5,7 +5,7 @@ if [ "$#" -ne 1 ]; then
     exit 3
 fi
 
-dbName=$1
+dbName="$1"
 
 scriptFullPath=$(readlink -f "$0")
 runningProcesses=$(ps -ef | grep $scriptFullPath | grep $dbName)
@@ -20,17 +20,21 @@ fi
 # test if connection timeout occurs in timeoutSec seconds
 timeoutSec=20
 
-connectOutput=$(timeout ${timeoutSec}s bash -c "db2 connect to $dbName user db2user using db2user; db2 ping $dbName 10; db2 connect reset")
+connectOutput=$(timeout --preserve-status ${timeoutSec}s bash -c "ps;db2 connect to $dbName user db2user using db2user || exit 4; db2 ping $dbName 10; db2 connect reset")
+connectExitCode="$?"
 
-if [ "$?" -eq 124 ]; then
+ps
+
+if [ $connectExitCode -eq 124 ]; then
   echo "Timeout db2 connect to $dbName. Tried for ${timeoutSec} sec."
   exit 2
 fi
 
-##db2 connect to $dbName user db2user using db2user
-##db2 ping $dbName 10
-##elapsedTime=$(db2 ping $dbName 10)
-##db2 connect reset
+if [ $connectExitCode -ne 0 ]; then
+  echo "Error while db2 connect to $dbName."
+  echo "$connectOutput"
+  exit $connectExitCode
+fi
 
 replyTimes=$(echo "$connectOutput" | grep "Elapsed time" | grep -o -E '[0-9]+')
 #echo "$replyTimes"
